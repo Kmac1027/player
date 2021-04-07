@@ -158,7 +158,9 @@ async function getData(e) {
   let clearDesc = document.createElement('h3');
   clearDesc.textContent = 'Description: ';
   let desc = document.createElement('p');
-  if (data.desc[1]) {
+  if (data.desc[2]) {
+    desc.textContent = `${data.desc[0]} ${data.desc[1]} ${data.desc[2]}`;
+  } else if (data.desc[1]) {
     desc.textContent = `${data.desc[0]} ${data.desc[1]}`;
   } else {
     desc.textContent = `${data.desc[0]}`;
