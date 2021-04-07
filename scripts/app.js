@@ -5,17 +5,19 @@ let spellsObj = {}
 let spellParentElement = document.getElementById('spell');
 
 let spellNameParentElement = document.getElementById('spellName');
+let damageTypeParentElement = document.getElementById('damageType');
+let damageParentElement = document.getElementById('damage');
 let lvlNameParentElement = document.getElementById('lvl');
 let castingTimeParentElement = document.getElementById('castingTime');
 let rangeParentElement = document.getElementById('range');
+let AOEParentElement = document.getElementById('AOE');
 let componentsParentElement = document.getElementById('components');
 let matParentElement = document.getElementById('mat');
 let durationParentElement = document.getElementById('duration');
 let concentrationParentElement = document.getElementById('concentration');
 let schoolParentElement = document.getElementById('school');
 let ritualParentElement = document.getElementById('ritual');
-let damageTypeParentElement = document.getElementById('damageType');
-// let damageParentElement = document.getElementById('damage');
+let classesParentElement = document.getElementById('classes');
 let descriptionParentElement = document.getElementById('description');
 
 let form = document.getElementById('form');
@@ -54,6 +56,40 @@ async function getData(e) {
   spellNameParentElement.appendChild(clearspellName);
   spellNameParentElement.appendChild(spellName);
 
+  //damage Type
+  damageTypeParentElement.innerHTML = '';
+  let clearDamageType = document.createElement('h3');
+  clearDamageType.textContent = 'Damage Type: ';
+  damageTypeParentElement.appendChild(clearDamageType);
+  if (data.damage) {
+    let damageType = document.createElement('p');
+    damageType.textContent = `${data.damage.damage_type.name}`;
+    damageTypeParentElement.appendChild(damageType);
+  } else {
+    let damageType = document.createElement('p');
+    damageType.textContent = `N/A`;
+    damageTypeParentElement.appendChild(damageType);
+  }
+
+  //damage
+  damageParentElement.innerHTML = '';
+  let clearDamage = document.createElement('h3');
+  clearDamage.textContent = 'Damage: ';
+  damageParentElement.appendChild(clearDamage)
+  if (data.damage) {
+    let damageObj = data.damage.damage_at_slot_level;
+    for (let i in damageObj) {
+      this['level' + i] = document.createElement('p');
+      this['level' + i].textContent = `Spell Slot Level ${i}: ${damageObj[i]}`;
+      damageParentElement.appendChild(this['level' + i]);
+    }
+  } else {
+    let damage = document.createElement('p');
+    damage.textContent = `N/A`;
+    damageParentElement.appendChild(damage);
+  }
+
+
   //lvl
   lvlNameParentElement.innerHTML = '';
   let clearLvl = document.createElement('h3');
@@ -81,6 +117,25 @@ async function getData(e) {
   rangeParentElement.appendChild(clearRange);
   rangeParentElement.appendChild(range);
 
+  //AOE
+  AOEParentElement.innerHTML = '';
+  let clearAOE = document.createElement('h3');
+  clearAOE.textContent = 'Area Of Effect: ';
+  AOEParentElement.appendChild(clearAOE);
+  if (data.area_of_effect) {
+    let AOE = document.createElement('p');
+    let AOEsize = document.createElement('p')
+    AOE.textContent = `Type: ${data.area_of_effect.type}`;
+    AOEsize.textContent = `Size: ${data.area_of_effect.size}`
+    AOEParentElement.appendChild(AOE);
+    AOEParentElement.appendChild(AOEsize);
+  } else {
+    let AOE = document.createElement('p')
+    AOE.textContent = `N/A`;
+    AOEParentElement.appendChild(AOE);
+  }
+
+
   //components
   componentsParentElement.innerHTML = '';
   let clearComponents = document.createElement('h3');
@@ -94,10 +149,16 @@ async function getData(e) {
   matParentElement.innerHTML = '';
   let clearMat = document.createElement('h3');
   clearMat.textContent = 'Materials: ';
-  let mat = document.createElement('p');
-  mat.textContent = `${data.material}`;
   matParentElement.appendChild(clearMat);
-  matParentElement.appendChild(mat);
+  if (data.material) {
+    let mat = document.createElement('p');
+    mat.textContent = `${data.material}`;
+    matParentElement.appendChild(mat);
+  } else {
+    let mat = document.createElement('p');
+    mat.textContent = `N/A`;
+    matParentElement.appendChild(mat);
+  }
 
   //duration
   durationParentElement.innerHTML = '';
@@ -135,29 +196,37 @@ async function getData(e) {
   ritualParentElement.appendChild(clearRitual);
   ritualParentElement.appendChild(ritual);
 
-  //damage Type
-  damageTypeParentElement.innerHTML = '';
-  let clearDamageType = document.createElement('h3');
-  clearDamageType.textContent = 'Damage Type: ';
-  damageTypeParentElement.appendChild(clearDamageType);
-  if (data.damage) {
-    let damageType = document.createElement('p');
-    damageType.textContent = `${data.damage.damage_type.name}`;
-    damageTypeParentElement.appendChild(damageType);
-  }
+
+  //classes
+  let classStr = '';
+  classesParentElement.innerHTML = '';
+  let clearClasses = document.createElement('h3');
+  clearClasses.textContent = 'Classes: ';
+  classesParentElement.appendChild(clearClasses);
+  let classes = document.createElement('p');
+  for (let i = 0; i < data.classes.length; i++) {
+    if (i !== data.classes.length - 1) {
+      classStr = classStr + ` ${data.classes[i].name},`
+    } else {
+      classStr = classStr + ` ${data.classes[i].name}`
+    }
+
+  };
+  classes.textContent = classStr;
+  classesParentElement.appendChild(classes);
 
 
   //description  desc
-  let str = '';
+  let descStr = '';
   descriptionParentElement.innerHTML = '';
   let clearDesc = document.createElement('h3');
   clearDesc.textContent = 'Description: ';
   let desc = document.createElement('p');
   descriptionParentElement.appendChild(clearDesc);
   for (let i = 0; i < data.desc.length; i++) {
-    str = str + ` ${data.desc[i]}`
+    descStr = descStr + ` ${data.desc[i]}`
   };
-  desc.textContent = str;
+  desc.textContent = descStr;
   descriptionParentElement.appendChild(desc);
 
   // //link
