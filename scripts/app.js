@@ -3,6 +3,14 @@
 let spellsArray = [];
 let spellsObj = {}
 let spellParentElement = document.getElementById('spell');
+
+let spellNameParentElement = document.getElementById('spellName');
+let castingTimeParentElement = document.getElementById('castingTime');
+let rangeParentElement = document.getElementById('range');
+let componentsParentElement = document.getElementById('components');
+let durationParentElement = document.getElementById('duration');
+let descriptionParentElement = document.getElementById('description');
+
 let form = document.getElementById('form');
 
 //this function populates the State Names array used in the autocomplete function
@@ -31,40 +39,40 @@ async function getData(e) {
   console.log(data)
 
   //name
-  let spellName = document.createElement('h1');
-  spellName.textContent = `Spell Name: ${spellsObj[name].spellName}`;
-  spellParentElement.appendChild(spellName);
+  let spellName = document.createElement('p');
+  spellName.textContent = `${spellsObj[name].spellName}`;
+  spellNameParentElement.appendChild(spellName);
 
   //casting time
-  let castingTime = document.createElement('h4');
-  castingTime.textContent = `Casting Time: ${data.casting_time}`;
-  spellParentElement.appendChild(castingTime);
+  let castingTime = document.createElement('p');
+  castingTime.textContent = `${data.casting_time}`;
+  castingTimeParentElement.appendChild(castingTime);
 
   //range
-  let range = document.createElement('h4');
-  range.textContent = `Range: ${data.range}`;
-  spellParentElement.appendChild(range);
+  let range = document.createElement('p');
+  range.textContent = `${data.range}`;
+  rangeParentElement.appendChild(range);
 
   //components
-  let components = document.createElement('h4');
-  components.textContent = `Components: ${data.components}`;
-  spellParentElement.appendChild(components);
+  let components = document.createElement('p');
+  components.textContent = `${data.components}`;
+  componentsParentElement.appendChild(components);
 
   //duration
-  let duration = document.createElement('h4');
-  duration.textContent = `Duration: ${data.duration}`;
-  spellParentElement.appendChild(duration);
+  let duration = document.createElement('p');
+  duration.textContent = `${data.duration}`;
+  durationParentElement.appendChild(duration);
 
   //description  desc
-  let desc = document.createElement('h4');
-  desc.textContent = `Description: ${data.desc[0]} ${data.desc[1]}`;
-  spellParentElement.appendChild(desc);
+  let desc = document.createElement('p');
+  desc.textContent = `${data.desc[0]} ${data.desc[1]}`;
+  descriptionParentElement.appendChild(desc);
 
-  //link
-  let link = document.createElement('a');
-  link.setAttribute('href', `https://www.dnd5eapi.co/api/spells/${spellsObj[name].spellIndex}`);
-  link.innerHTML = 'Click Here for More info about ' + spellsObj[name].spellName;
-  spellParentElement.appendChild(link);
+  // //link
+  // let link = document.createElement('a');
+  // link.setAttribute('href', `https://www.dnd5eapi.co/api/spells/${spellsObj[name].spellIndex}`);
+  // link.innerHTML = 'Click Here for More info about ' + spellsObj[name].spellName;
+  // spellParentElement.appendChild(link);
 
 
 };
