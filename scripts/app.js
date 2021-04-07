@@ -5,10 +5,17 @@ let spellsObj = {}
 let spellParentElement = document.getElementById('spell');
 
 let spellNameParentElement = document.getElementById('spellName');
+let lvlNameParentElement = document.getElementById('lvl');
 let castingTimeParentElement = document.getElementById('castingTime');
 let rangeParentElement = document.getElementById('range');
 let componentsParentElement = document.getElementById('components');
+let matParentElement = document.getElementById('mat');
 let durationParentElement = document.getElementById('duration');
+let concentrationParentElement = document.getElementById('concentration');
+let schoolParentElement = document.getElementById('school');
+let ritualParentElement = document.getElementById('ritual');
+let damageTypeParentElement = document.getElementById('damageType');
+// let damageParentElement = document.getElementById('damage');
 let descriptionParentElement = document.getElementById('description');
 
 let form = document.getElementById('form');
@@ -39,33 +46,124 @@ async function getData(e) {
   console.log(data)
 
   //name
+  spellNameParentElement.innerHTML = '';
+  let clearspellName = document.createElement('h2');
+  clearspellName.textContent = 'Spell Name: ';
   let spellName = document.createElement('p');
   spellName.textContent = `${spellsObj[name].spellName}`;
+  spellNameParentElement.appendChild(clearspellName);
   spellNameParentElement.appendChild(spellName);
 
+  //lvl
+  lvlNameParentElement.innerHTML = '';
+  let clearLvl = document.createElement('h3');
+  clearLvl.textContent = 'Spell Level: ';
+  let lvl = document.createElement('p');
+  lvl.textContent = `${data.level}`;
+  lvlNameParentElement.appendChild(clearLvl);
+  lvlNameParentElement.appendChild(lvl);
+
   //casting time
+  castingTimeParentElement.innerHTML = '';
+  let clearCastingTime = document.createElement('h3');
+  clearCastingTime.textContent = 'Casting Time: ';
   let castingTime = document.createElement('p');
   castingTime.textContent = `${data.casting_time}`;
+  castingTimeParentElement.appendChild(clearCastingTime);
   castingTimeParentElement.appendChild(castingTime);
 
   //range
+  rangeParentElement.innerHTML = '';
+  let clearRange = document.createElement('h3');
+  clearRange.textContent = 'Range: ';
   let range = document.createElement('p');
   range.textContent = `${data.range}`;
+  rangeParentElement.appendChild(clearRange);
   rangeParentElement.appendChild(range);
 
   //components
+  componentsParentElement.innerHTML = '';
+  let clearComponents = document.createElement('h3');
+  clearComponents.textContent = 'Components: ';
   let components = document.createElement('p');
   components.textContent = `${data.components}`;
+  componentsParentElement.appendChild(clearComponents);
   componentsParentElement.appendChild(components);
 
+  //material mat
+  matParentElement.innerHTML = '';
+  let clearMat = document.createElement('h3');
+  clearMat.textContent = 'Materials: ';
+  let mat = document.createElement('p');
+  mat.textContent = `${data.material}`;
+  matParentElement.appendChild(clearMat);
+  matParentElement.appendChild(mat);
+
   //duration
+  durationParentElement.innerHTML = '';
+  let clearDur = document.createElement('h3');
+  clearDur.textContent = 'Duration: ';
   let duration = document.createElement('p');
   duration.textContent = `${data.duration}`;
+  durationParentElement.appendChild(clearDur);
   durationParentElement.appendChild(duration);
 
+  //concentration
+  concentrationParentElement.innerHTML = '';
+  let clearConcentration = document.createElement('h3');
+  clearConcentration.textContent = 'Concentration: ';
+  let concentration = document.createElement('p');
+  concentration.textContent = `${data.concentration}`;
+  concentrationParentElement.appendChild(clearConcentration);
+  concentrationParentElement.appendChild(concentration);
+
+  //school
+  schoolParentElement.innerHTML = '';
+  let clearSchool = document.createElement('h3');
+  clearSchool.textContent = 'School: ';
+  let school = document.createElement('p');
+  school.textContent = `${data.school.name}`;
+  schoolParentElement.appendChild(clearSchool);
+  schoolParentElement.appendChild(school);
+
+  //ritual
+  ritualParentElement.innerHTML = '';
+  let clearRitual = document.createElement('h3');
+  clearRitual.textContent = 'Ritual: ';
+  let ritual = document.createElement('p');
+  ritual.textContent = `${data.ritual}`;
+  ritualParentElement.appendChild(clearRitual);
+  ritualParentElement.appendChild(ritual);
+
+  //damage Type
+  damageTypeParentElement.innerHTML = '';
+  let clearDamageType = document.createElement('h3');
+  clearDamageType.textContent = 'Damage Type: ';
+  damageTypeParentElement.appendChild(clearDamageType);
+  if (data.damage.damage_type) {
+    let damageType = document.createElement('p');
+    damageType.textContent = `${data.damage.damage_type.name}`;
+    damageTypeParentElement.appendChild(damageType);
+  }
+
+
+
+  //damage
+  // let damage = document.createElement('p');
+  // damage.textContent = `${data.damage}`;
+  // damageParentElement.appendChild(damage);
+
   //description  desc
+  descriptionParentElement.innerHTML = '';
+  let clearDesc = document.createElement('h3');
+  clearDesc.textContent = 'Description: ';
   let desc = document.createElement('p');
-  desc.textContent = `${data.desc[0]} ${data.desc[1]}`;
+  if (data.desc[1]) {
+    desc.textContent = `${data.desc[0]} ${data.desc[1]}`;
+  } else {
+    desc.textContent = `${data.desc[0]}`;
+  }
+  descriptionParentElement.appendChild(clearDesc);
   descriptionParentElement.appendChild(desc);
 
   // //link
