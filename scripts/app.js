@@ -140,32 +140,24 @@ async function getData(e) {
   let clearDamageType = document.createElement('h3');
   clearDamageType.textContent = 'Damage Type: ';
   damageTypeParentElement.appendChild(clearDamageType);
-  if (data.damage.damage_type) {
+  if (data.damage) {
     let damageType = document.createElement('p');
     damageType.textContent = `${data.damage.damage_type.name}`;
     damageTypeParentElement.appendChild(damageType);
   }
 
 
-
-  //damage
-  // let damage = document.createElement('p');
-  // damage.textContent = `${data.damage}`;
-  // damageParentElement.appendChild(damage);
-
   //description  desc
+  let str = '';
   descriptionParentElement.innerHTML = '';
   let clearDesc = document.createElement('h3');
   clearDesc.textContent = 'Description: ';
   let desc = document.createElement('p');
-  if (data.desc[2]) {
-    desc.textContent = `${data.desc[0]} ${data.desc[1]} ${data.desc[2]}`;
-  } else if (data.desc[1]) {
-    desc.textContent = `${data.desc[0]} ${data.desc[1]}`;
-  } else {
-    desc.textContent = `${data.desc[0]}`;
-  }
   descriptionParentElement.appendChild(clearDesc);
+  for (let i = 0; i < data.desc.length; i++) {
+    str = str + ` ${data.desc[i]}`
+  };
+  desc.textContent = str;
   descriptionParentElement.appendChild(desc);
 
   // //link
