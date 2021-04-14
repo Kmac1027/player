@@ -76,7 +76,11 @@ async function getData(e) {
   let clearDamage = document.createElement('h3');
   clearDamage.textContent = 'Damage: ';
   damageParentElement.appendChild(clearDamage)
-  if (data.damage.damage_at_slot_level) {
+  if (!data.damage) {
+    let damage = document.createElement('p');
+    damage.textContent = `N/A`;
+    damageParentElement.appendChild(damage);
+  } else if (data.damage.damage_at_slot_level) {
     let damageObj = data.damage.damage_at_slot_level;
     for (let i in damageObj) {
       this['level' + i] = document.createElement('p');
@@ -90,10 +94,6 @@ async function getData(e) {
       this['level' + i].textContent = `Character Level ${i}: ${damageObj[i]}`;
       damageParentElement.appendChild(this['level' + i]);
     }
-  } else {
-    let damage = document.createElement('p');
-    damage.textContent = `N/A`;
-    damageParentElement.appendChild(damage);
   }
 
 
