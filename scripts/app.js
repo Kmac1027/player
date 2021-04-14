@@ -226,15 +226,15 @@ async function getData(e) {
   for (let i = 0; i < data.desc.length; i++) {
     descStr = descStr + ` ${data.desc[i]}`
   };
+  if (data.higher_level) {
+    let higherLevel = ' At Higher Level: ';
+    descStr = descStr + higherLevel;
+    for (let j = 0; j < data.higher_level.length; j++) {
+      descStr = descStr + data.higher_level[j];
+    }
+  }
   desc.textContent = descStr;
   descriptionParentElement.appendChild(desc);
-
-  // //link
-  // let link = document.createElement('a');
-  // link.setAttribute('href', `https://www.dnd5eapi.co/api/spells/${spellsObj[name].spellIndex}`);
-  // link.innerHTML = 'Click Here for More info about ' + spellsObj[name].spellName;
-  // spellParentElement.appendChild(link);
-
 
 };
 
