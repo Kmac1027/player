@@ -76,11 +76,18 @@ async function getData(e) {
   let clearDamage = document.createElement('h3');
   clearDamage.textContent = 'Damage: ';
   damageParentElement.appendChild(clearDamage)
-  if (data.damage) {
+  if (data.damage.damage_at_slot_level) {
     let damageObj = data.damage.damage_at_slot_level;
     for (let i in damageObj) {
       this['level' + i] = document.createElement('p');
       this['level' + i].textContent = `Spell Slot Level ${i}: ${damageObj[i]}`;
+      damageParentElement.appendChild(this['level' + i]);
+    }
+  } else if (data.damage.damage_at_character_level) {
+    let damageObj = data.damage.damage_at_character_level;
+    for (let i in damageObj) {
+      this['level' + i] = document.createElement('p');
+      this['level' + i].textContent = `Character Level ${i}: ${damageObj[i]}`;
       damageParentElement.appendChild(this['level' + i]);
     }
   } else {
