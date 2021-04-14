@@ -1,7 +1,7 @@
 'use strict'
 
 let spellsArray = [];
-let spellsObj = {}
+let spellsObj = {};
 let spellParentElement = document.getElementById('spell');
 
 let spellNameParentElement = document.getElementById('spellName');
@@ -18,6 +18,7 @@ let concentrationParentElement = document.getElementById('concentration');
 let schoolParentElement = document.getElementById('school');
 let ritualParentElement = document.getElementById('ritual');
 let classesParentElement = document.getElementById('classes');
+let healParentElement = document.getElementById('healing');
 let descriptionParentElement = document.getElementById('description');
 
 let form = document.getElementById('form');
@@ -36,7 +37,6 @@ async function getSpellName() {
   }
 };
 getSpellName();
-
 
 //this function puts together the object with all the information needed to display on the page
 async function getData(e) {
@@ -75,7 +75,7 @@ async function getData(e) {
   damageParentElement.innerHTML = '';
   let clearDamage = document.createElement('h3');
   clearDamage.textContent = 'Damage: ';
-  damageParentElement.appendChild(clearDamage)
+  damageParentElement.appendChild(clearDamage);
   if (!data.damage) {
     let damage = document.createElement('p');
     damage.textContent = `N/A`;
@@ -95,7 +95,6 @@ async function getData(e) {
       damageParentElement.appendChild(this['level' + i]);
     }
   }
-
 
   //lvl
   lvlNameParentElement.innerHTML = '';
@@ -223,6 +222,25 @@ async function getData(e) {
   classesParentElement.appendChild(classes);
 
 
+  //healing
+  healParentElement.innerHTML = '';
+  let clearHeal = document.createElement('h3');
+  clearHeal.textContent = 'Healing: ';
+  healParentElement.appendChild(clearHeal);
+  if (!data.heal_at_slot_level) {
+    let heal = document.createElement('p');
+    heal.textContent = `N/A`;
+    healParentElement.appendChild(heal);
+  } else {
+    let healObj = data.heal_at_slot_level;
+    for (let i in healObj) {
+      this['level' + i] = document.createElement('p');
+      this['level' + i].textContent = `Slot Level ${i}: ${healObj[i]}`;
+      healParentElement.appendChild(this['level' + i]);
+    }
+  }
+
+
   //description  desc
   let descStr = '';
   descriptionParentElement.innerHTML = '';
@@ -234,7 +252,7 @@ async function getData(e) {
     descStr = descStr + ` ${data.desc[i]}`
   };
   if (data.higher_level) {
-    let higherLevel = ' At Higher Level: ';
+    let higherLevel = ' At Higher Levels: ';
     descStr = descStr + higherLevel;
     for (let j = 0; j < data.higher_level.length; j++) {
       descStr = descStr + data.higher_level[j];
