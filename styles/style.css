@@ -13,7 +13,9 @@ body {
   text-align: center;
 }
 #spell{
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 h1, h2, h3, h4 {
@@ -88,6 +90,8 @@ input[type=submit] {
   width: 240px;
   margin: 16px;
   float: left;
+
+  
 }
 .card h1, h2, h3 {
   font-size: 1.1em;
@@ -108,5 +112,5 @@ input[type=submit] {
   padding: 10px;
   width: 1000px;
   margin: 16px;
-  float: center;
+  /* float: center; */
 }

@@ -52,7 +52,7 @@ async function getData(e) {
   const name = e.target.myCountry.value;
   tempArr = [];
   tempArr.push(name);
-  spellParentElement.innerHTML = '';
+  // spellParentElement.innerHTML = '';
   const response = await fetch(`https://www.dnd5eapi.co/api/spells/${spellsObj[name].spellIndex}`);
   const data = await response.json();
   console.log(data)
