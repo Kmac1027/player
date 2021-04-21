@@ -24,6 +24,7 @@ body {
 
 h1, h2, h3, h4 {
   text-align: center;
+  color: white;
 }
 
 header {
@@ -41,7 +42,9 @@ header {
   display: none;
 }
 
-
+label {
+  color: white;
+}
 
 .autocomplete {
   /*the container must be positioned relative:*/
@@ -60,7 +63,6 @@ input[type=text] {
 }
 input[type=submit], button {
   background-color: DodgerBlue;
-  /* background-color: rgba(63, 173, 20, 0.753); */
   color: #fff;
 }
 .autocomplete-items {
@@ -91,7 +93,8 @@ input[type=submit], button {
 }
 
 .card {
-  background: #fff;
+  /* background: #fff; */
+  background: black;
   border-radius: 10px;
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
@@ -111,14 +114,16 @@ input[type=submit], button {
   white-space: pre-wrap;
   word-wrap: break-word;
   text-align: center;
+  color: white;
 }
 
 #description{
-  background: #fff;
+  /* background: #fff; */
+  background: black;
   border-radius: 10px;
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
   width: 1000px;
   margin: 16px;
-  /* float: center; */
+  color: white;
 }
