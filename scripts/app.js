@@ -2,6 +2,7 @@
 
 let spellsArray = [];
 let spellsObj = {};
+let tempArr = [];
 let spellParentElement = document.getElementById('spell');
 
 let spellNameParentElement = document.getElementById('spellName');
@@ -21,6 +22,10 @@ let classesParentElement = document.getElementById('classes');
 let healParentElement = document.getElementById('healing');
 let descriptionParentElement = document.getElementById('description');
 
+let noteParentElement = document.getElementById('note');
+let noteFormParentElement = document.getElementById('noteForm');
+let noteFormDivParentElement = document.getElementById('noteFormDiv');
+
 let form = document.getElementById('form');
 
 //this function populates the State Names array used in the autocomplete function
@@ -38,14 +43,37 @@ async function getSpellName() {
 };
 getSpellName();
 
+
+
+
 //this function puts together the object with all the information needed to display on the page
 async function getData(e) {
   e.preventDefault();
-  const name = e.target.myCountry.value
+  const name = e.target.myCountry.value;
+  tempArr = [];
+  tempArr.push(name);
   spellParentElement.innerHTML = '';
   const response = await fetch(`https://www.dnd5eapi.co/api/spells/${spellsObj[name].spellIndex}`);
   const data = await response.json();
   console.log(data)
+
+  //notes
+
+  noteParentElement.className = "card";
+  noteFormDivParentElement.className = "card";
+
+  let storedNotes = localStorage.getItem(name);
+  let parseNotes = JSON.parse(storedNotes);
+  noteParentElement.innerHTML = '';
+  let clearNote = document.createElement('h2');
+  clearNote.textContent = 'My Notes: ';
+  let deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "delete This Note";
+  let note = document.createElement('p');
+  note.textContent = parseNotes;
+  noteParentElement.appendChild(clearNote);
+  noteParentElement.appendChild(note);
+  noteParentElement.appendChild(deleteButton);
 
   //name
   spellNameParentElement.innerHTML = '';
@@ -264,7 +292,49 @@ async function getData(e) {
 };
 
 
+
+function storeNotes(event) {
+  //stores the notes created in the loval storage
+  event.preventDefault();
+  let spellNote = event.target.noteInput.value;
+  let jsonSpellNote = JSON.stringify(spellNote);
+  console.log(jsonSpellNote)
+  localStorage.setItem(tempArr[0], jsonSpellNote);
+  noteFormParentElement.reset();
+
+  //adds the notes created to the notes card immedietly
+  noteParentElement.innerHTML = "";
+  let storedNotes = localStorage.getItem(tempArr[0]);
+  let parseNotes = JSON.parse(storedNotes);
+  let note = document.createElement('p');
+  note.textContent = parseNotes;
+  let clearNote = document.createElement('h2');
+  clearNote.textContent = 'My Notes: ';
+  let deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "delete This Note";
+  noteParentElement.appendChild(clearNote);
+  noteParentElement.appendChild(note);
+  noteParentElement.appendChild(deleteButton);
+};
+
+
+function deleteNote(e) {
+  e.preventDefault();
+  localStorage.removeItem(tempArr[0]);
+  noteParentElement.innerHTML = "";
+  let clearNote = document.createElement('h2');
+  clearNote.textContent = 'My Notes: ';
+  let deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "delete This Note";
+  noteParentElement.appendChild(clearNote);
+  noteParentElement.appendChild(deleteButton);
+}
+
+// event listeners
 form.addEventListener('submit', getData);
+noteFormParentElement.addEventListener('submit', storeNotes);
+noteParentElement.addEventListener('submit', deleteNote);
+
 
 
 //this function creates the autocomplete functionality on the page
