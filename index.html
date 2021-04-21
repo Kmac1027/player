@@ -73,6 +73,19 @@
   <div class="card" id="description">
     <h3>Description: </h3>
   </div>
+  <form class="hidden" id="note">
+    <h3>My Notes: </h3>
+    <input type="submit" value="delete This Note" id="delete">
+  </form>
+
+  <div class="hidden" id="noteFormDiv">
+    <form id="noteForm">
+      <label for="noteInput">Leave A Note</label>
+      <textarea rows="6" cols="25" name="noteInput"></textarea>
+      <input type="submit" value="Add Note">
+    </form>
+  </div>
+
 
 
   <script src="scripts/app.js">
