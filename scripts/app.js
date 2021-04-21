@@ -286,7 +286,10 @@ async function getData(e) {
     descStr = descStr + ` ${data.desc[i]}`
   };
   if (data.higher_level) {
-    let higherLevel = ' At Higher Levels: ';
+    let higherLevel = `
+    
+    
+    AT HIGHER LEVELS: `;
     descStr = descStr + higherLevel;
     for (let j = 0; j < data.higher_level.length; j++) {
       descStr = descStr + data.higher_level[j];
