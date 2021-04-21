@@ -94,9 +94,10 @@ async function getData(e) {
     damageType.textContent = `${data.damage.damage_type.name}`;
     damageTypeParentElement.appendChild(damageType);
   } else {
-    let damageType = document.createElement('p');
-    damageType.textContent = `N/A`;
-    damageTypeParentElement.appendChild(damageType);
+    damageTypeParentElement.className = "hidden";
+    // let damageType = document.createElement('p');
+    // damageType.textContent = `N/A`;
+    // damageTypeParentElement.appendChild(damageType);
   }
 
   //damage
@@ -105,9 +106,10 @@ async function getData(e) {
   clearDamage.textContent = 'Damage: ';
   damageParentElement.appendChild(clearDamage);
   if (!data.damage) {
-    let damage = document.createElement('p');
-    damage.textContent = `N/A`;
-    damageParentElement.appendChild(damage);
+    damageParentElement.className = "hidden";
+    // let damage = document.createElement('p');
+    // damage.textContent = `N/A`;
+    // damageParentElement.appendChild(damage);
   } else if (data.damage.damage_at_slot_level) {
     let damageObj = data.damage.damage_at_slot_level;
     for (let i in damageObj) {
@@ -256,9 +258,10 @@ async function getData(e) {
   clearHeal.textContent = 'Healing: ';
   healParentElement.appendChild(clearHeal);
   if (!data.heal_at_slot_level) {
-    let heal = document.createElement('p');
-    heal.textContent = `N/A`;
-    healParentElement.appendChild(heal);
+    healParentElement.className = "hidden"
+    // let heal = document.createElement('p');
+    // heal.textContent = `N/A`;
+    // healParentElement.appendChild(heal);
   } else {
     let healObj = data.heal_at_slot_level;
     for (let i in healObj) {
