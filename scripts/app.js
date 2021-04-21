@@ -85,6 +85,7 @@ async function getData(e) {
   spellNameParentElement.appendChild(spellName);
 
   //damage Type
+  damageTypeParentElement.className = "card";
   damageTypeParentElement.innerHTML = '';
   let clearDamageType = document.createElement('h3');
   clearDamageType.textContent = 'Damage Type: ';
@@ -101,6 +102,7 @@ async function getData(e) {
   }
 
   //damage
+  damageParentElement.className = "card";
   damageParentElement.innerHTML = '';
   let clearDamage = document.createElement('h3');
   clearDamage.textContent = 'Damage: ';
@@ -253,6 +255,7 @@ async function getData(e) {
 
 
   //healing
+  healParentElement.className = "card"
   healParentElement.innerHTML = '';
   let clearHeal = document.createElement('h3');
   clearHeal.textContent = 'Healing: ';
