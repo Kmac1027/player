@@ -286,6 +286,7 @@ async function getData(e) {
     descStr = descStr + ` ${data.desc[i]}`
   };
   if (data.higher_level) {
+    //space is left intentinal to seperate the higher level description from the regular description
     let higherLevel = `
     
     
