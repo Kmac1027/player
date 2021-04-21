@@ -296,8 +296,12 @@ async function getData(e) {
 function storeNotes(event) {
   //stores the notes created in the loval storage
   event.preventDefault();
+  let existing = localStorage.getItem(tempArr[0]);
   let spellNote = event.target.noteInput.value;
-  let jsonSpellNote = JSON.stringify(spellNote);
+
+  //checks to see if there is already a note under that spell, if so it adds to it
+  let adding = existing ? `${existing.replace(/['"]+/g, '')}. ${spellNote}` : spellNote;
+  let jsonSpellNote = JSON.stringify(adding);
   console.log(jsonSpellNote)
   localStorage.setItem(tempArr[0], jsonSpellNote);
   noteFormParentElement.reset();
