@@ -68,7 +68,7 @@ async function getData(e) {
   let clearNote = document.createElement('h2');
   clearNote.textContent = 'My Notes: ';
   let deleteButton = document.createElement('button');
-  deleteButton.innerHTML = "Delete This Note";
+  deleteButton.innerHTML = "Delete Note";
   let note = document.createElement('p');
   note.textContent = parseNotes;
   noteParentElement.appendChild(clearNote);
@@ -325,7 +325,7 @@ function storeNotes(event) {
   let clearNote = document.createElement('h2');
   clearNote.textContent = 'My Notes: ';
   let deleteButton = document.createElement('button');
-  deleteButton.innerHTML = "Delete This Note";
+  deleteButton.innerHTML = "Delete Note";
   noteParentElement.appendChild(clearNote);
   noteParentElement.appendChild(note);
   noteParentElement.appendChild(deleteButton);
@@ -339,7 +339,7 @@ function deleteNote(e) {
   let clearNote = document.createElement('h2');
   clearNote.textContent = 'My Notes: ';
   let deleteButton = document.createElement('button');
-  deleteButton.innerHTML = "Delete This Note";
+  deleteButton.innerHTML = "Delete Note";
   noteParentElement.appendChild(clearNote);
   noteParentElement.appendChild(deleteButton);
 }
