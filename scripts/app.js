@@ -3,6 +3,8 @@
 let spellsArray = [];
 let spellsObj = {};
 let tempArr = [];
+
+//parent elements
 let spellParentElement = document.getElementById('spell');
 
 let spellNameParentElement = document.getElementById('spellName');
@@ -49,7 +51,7 @@ getSpellName();
 //this function puts together the object with all the information needed to display on the page
 async function getData(e) {
   e.preventDefault();
-  const name = e.target.myCountry.value;
+  const name = e.target.mySpellList.value;
   tempArr = [];
   tempArr.push(name);
   // spellParentElement.innerHTML = '';
@@ -58,7 +60,6 @@ async function getData(e) {
   console.log(data)
 
   //notes
-
   noteParentElement.className = "card";
   noteFormDivParentElement.className = "card";
 
